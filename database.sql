@@ -1,5 +1,3 @@
-CREATE DATABASE cocktail_bot;
-
 CREATE TABLE IF NOT EXISTS cocktails (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -15,8 +13,10 @@ CREATE TABLE IF NOT EXISTS ingredients (
 );
 
 CREATE TABLE IF NOT EXISTS cocktail_ingredients (
+    cocktail_id INT NOT NULL,
+    ingredient_id INT NOT NULL,
+    amount VARCHAR(100),
     PRIMARY KEY (cocktail_id, ingredient_id),
     FOREIGN KEY (cocktail_id) REFERENCES cocktails(id) ON DELETE CASCADE,
-    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE,
-    amount VARCHAR(100)
+    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE
 );
